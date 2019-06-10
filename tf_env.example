@@ -1,0 +1,6 @@
+export TF_VAR_org_id=10xxxxxxxx777
+export TF_VAR_billing_account=03xxxx-xxxxxx-xxxDDD
+export TF_VAR_env_folder=4xxxxxxxxxx5
+export TF_VAR_state_bucket=tf-state-xxxx
+export TF_ADMIN=tf-admin-xxxx
+export GOOGLE_APPLICATION_CREDENTIALS=~/.config/gcloud/tf-admin-xxxx.json
