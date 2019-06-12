@@ -1,0 +1,4 @@
+service1	/health	200	False	OK
+service2	/api/ping	200	True	Pong
+service3	/health_check	200	False	app
+service4	/	301	False <EMPTY>
