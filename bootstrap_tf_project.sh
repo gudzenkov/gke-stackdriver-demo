@@ -57,7 +57,7 @@ export TF_VAR_admin_email=$OPS_ADMIN
 
 export TF_VAR_state_bucket=$TF_VAR_state_bucket
 export TF_ADMIN=$TF_ADMIN
-export GOOGLE_APPLICATION_CREDENTIALS=~/.gcp/${TF_ADMIN}.json
+export GOOGLE_APPLICATION_CREDENTIALS=~/.config/gcloud/${TF_ADMIN}.json
 
 export TF_VAR_stackdriver_project=$STACKDRIVER_PROJECT_ID
 export TF_VAR_core_project=$CORE_PROJECT_ID
@@ -87,8 +87,8 @@ read -t 3 answer
 
 # Create keys for terraform account, this keys will be put to your home directory
   gcloud iam service-accounts keys create ${TF_ADMIN}.json --iam-account $TF_IAM
-  mkdir -p ~/.gcp && mv ${TF_ADMIN}.json ~/.gcp
-  GOOGLE_APPLICATION_CREDENTIALS=~/.gcp/${TF_ADMIN}.json
+  mkdir -p ~/.config/gcloud && mv ${TF_ADMIN}.json ~/.config/gcloud
+  GOOGLE_APPLICATION_CREDENTIALS=~/.config/gcloud/${TF_ADMIN}.json
 
 # Grant the service account permission to view the Terraform Admin Project and manage Cloud Storage:
   gcloud projects add-iam-policy-binding ${TF_ADMIN} --member $TF_ACCOUNT --role roles/owner
