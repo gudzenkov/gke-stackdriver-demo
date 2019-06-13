@@ -1,5 +1,5 @@
 ### Description
-This module will create a Google Uptime Check with Alert Policy
+This module will create a Google Stackdriver Uptime Check with Alert Policy
 For more details, please visit:
 
 - For more details about Google Uptime Checks:
