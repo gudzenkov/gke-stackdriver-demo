@@ -7,6 +7,8 @@
 
 BACKEND_CONFIG="tf/backend.tf"
 
+ROOT=$(git rev-parse --show-toplevel)
+cd $ROOT
 #Load environment variables
 [ -z "$1" ] && ENV_FILE=".tf_env" || ENV_FILE=$1
 [ -f "$ENV_FILE" ] && echo "Loading $ENV_FILE ..." && source "$ENV_FILE"
@@ -81,6 +83,7 @@ read -t 3 answer
   gcloud services enable cloudbilling.googleapis.com --project $TF_ADMIN
   gcloud services enable container.googleapis.com --project $TF_ADMIN
   gcloud services enable iam.googleapis.com --project $TF_ADMIN
+  gcloud services enable cloudbuild.googleapis.com --project $TF_ADMIN
 
 # Create terraform service account
   gcloud iam service-accounts create $TF_USER --display-name "Terraform admin account" --project ${TF_ADMIN}

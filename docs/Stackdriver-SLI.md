@@ -57,6 +57,7 @@ kubectl get svc frontend-external
 - Click on Trace -> Trace List page
 - enter "Recv./cart" in the Request filter box to filter for all the cart operations and look for similar traces
 - Set the time period to 1 hour so that it includes traces that occurred before the issue.
+- ListRecommendations is being called many times per request, causing significant additional latency
 
 ### Fix the latency issue that the last release created
 ```
@@ -78,6 +79,12 @@ chart type: Line
 ### Monitoring Overview in Stackdriver -> Error Rate SLI incident -> Error Reporting
   - You can see that the currencyservice pod is logging significantly more errors than it was previously
   - Acknowledge the incident so that no further notification escalation takes place
+```
+resource.type="k8s_container"
+resource.labels.cluster_name="shop-cluster"
+severity>=ERROR
+labels."k8s-pod/app"="currencyservice"
+```
 
 ### Error Reporting -> Error: Conversion is Zero
   - Check what specific calls were related to the error.

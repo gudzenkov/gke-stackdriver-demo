@@ -29,7 +29,7 @@ open "https://console.cloud.google.com/monitoring?project=${STACKDRIVER_PROJECT_
 # Deploy Stackdriver Alert Policies and Uptime Checks with Terraform
 ## Bootstrap TF project and state bucket
 ```
-./bootstrap_tf_project.sh
+./scripts/bootstrap_tf_project.sh
 source .tf_env
 ```
 ## Deploy Stackdriver Alert Policies and Uptime checks
