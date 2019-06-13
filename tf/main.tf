@@ -2,6 +2,7 @@
 
 locals {
 
+  notify_none = []
   notify_admin = [
     "${google_monitoring_notification_channel.admin.name}"
   ]
@@ -12,5 +13,5 @@ locals {
     "${google_monitoring_notification_channel.pagerduty.name}"
   ]
 
-  notification_channels = "${local.notify_admin}"
+  notification_channels = "${local.notify_none}"
 }

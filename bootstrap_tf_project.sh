@@ -100,7 +100,9 @@ read -t 3 answer
   gcloud alpha resource-manager folders add-iam-policy-binding $TF_VAR_env_folder --member $TF_ACCOUNT --role roles/resourcemanager.folderAdmin
   gcloud alpha resource-manager folders add-iam-policy-binding $TF_VAR_env_folder --member $TF_ACCOUNT --role roles/resourcemanager.folderIamAdmin
   gcloud alpha resource-manager folders add-iam-policy-binding $TF_VAR_env_folder --member $TF_ACCOUNT --role roles/resourcemanager.projectCreator
-  gcloud alpha resource-manager folders add-iam-policy-binding $TF_VAR_env_folder --member $TF_ACCOUNT --role roles/resourcemanager.projectDeleter
+  # gcloud alpha resource-manager folders add-iam-policy-binding $TF_VAR_env_folder --member $TF_ACCOUNT --role roles/resourcemanager.projectDeleter
+
+# Grant Organization-wide permissions for SVPC and Billing for TF service account
   gcloud organizations add-iam-policy-binding ${TF_VAR_org_id} --member $TF_ACCOUNT --role roles/billing.user
   gcloud organizations add-iam-policy-binding ${TF_VAR_org_id} --member $TF_ACCOUNT --role roles/compute.xpnAdmin
 
