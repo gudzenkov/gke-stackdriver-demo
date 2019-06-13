@@ -41,12 +41,12 @@ variable "prefix" {
 
 variable "domain" {
     description = "Company Domain"
-    default = "domain.com"
+    default = "jamfcloud.com"
 }
 
 variable "api_gateway" {
     description = "API Gateway for Uptime checks"
-    default = "gw.domain.com"
+    default = "api.jamfcloud.com"
 }
 
 # Groups for Region/Zones and Projects
