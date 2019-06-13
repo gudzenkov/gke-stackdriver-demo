@@ -91,7 +91,6 @@ labels."k8s-pod/app"="currencyservice"
   - Click on the lowest call showing here: */usr/src/app/server/js:131*.
   This will load you into Stackdriver Debug.
   - Select the source code that is running from Cloud Source Repositories
-  - Select the source code that is running from Cloud Source Repositories
   - Select your source with:
     ```
     Repository: shop-cluster
@@ -100,6 +99,12 @@ labels."k8s-pod/app"="currencyservice"
 ### Snapshots to inspect the variables as the application progresses.
   - See if the previous branch "Master" had this code error on line 137.
 Go back to the Console and inspect the code using Cloud Source Repositories
+```
+gcloud debug snapshots create --target=currencyservice-1.0.0 src/currencyservice/server.js:136
+gcloud debug snapshots create --target=currencyservice-1.0.0 src/currencyservice/server.js:144
+gcloud debug snapshots create --target=currencyservice-1.0.0 src/currencyservice/server.js:149
+gcloud debug snapshots create --target=currencyservice-1.0.0 src/currencyservice/server.js:155
+```
 
 ### Deploy Fix
 ```
