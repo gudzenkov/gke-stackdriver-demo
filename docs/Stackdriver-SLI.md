@@ -46,7 +46,7 @@ in the following files:
 - kubernetes_manifests/currencyservice.yaml
 - kubernetes_manifests/frontend.yaml
 ```
-skaffold run
+skaffold deploy
 kubectl get pods
 kubectl get svc frontend-external
 ```
@@ -66,7 +66,7 @@ image tag: rel013019fix
 - kubernetes_manifests/recommendationservice.yaml
 - kubernetes_manifests/frontend.yaml
 ```
-skaffold run
+skaffold deploy
 ```
 
 ### Validate Fix
@@ -94,8 +94,8 @@ labels."k8s-pod/app"="currencyservice"
   - Select the source code that is running from Cloud Source Repositories
   - Select your source with:
     ```
-    Repository: apm-qwiklabs-demo
-    Tagged version or branch: APM-Troubleshooting-Demo-1
+    Repository: shop-cluster
+    Tagged version or branch: APM-Troubleshooting-Demo-2
     ```
 ### Snapshots to inspect the variables as the application progresses.
   - See if the previous branch "Master" had this code error on line 137.
