@@ -50,7 +50,7 @@ resource "google_monitoring_alert_policy" "api_quota" {
 resource "google_monitoring_alert_policy" "api_consumed" {
   project = "${var.stackdriver_project}"
   display_name = "API Consumed"
-  enabled = "true"
+  enabled = "false"
   combiner = "OR"
   notification_channels = ["${local.notification_channels}"]
   conditions = [
