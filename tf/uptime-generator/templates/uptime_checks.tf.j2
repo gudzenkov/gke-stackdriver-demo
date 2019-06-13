@@ -8,7 +8,7 @@
 {%- if check['code'] == '200' %}
 
 module "{{ check['name'] | replace('/','-') }}" {
-  source     = "modules/uptime_check"
+  source     = "modules/stackdriver-uptime-check"
   name       = "${var.api_gateway}/{{ check['name'] }}"
     {%- if check['auth'] == 'False' %}
   host       = "${var.api_gateway}"

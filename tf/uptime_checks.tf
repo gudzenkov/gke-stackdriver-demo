@@ -5,7 +5,7 @@
 # Login Proxy auth can be passed for JWT token authorization
 
 module "service1" {
-  source     = "modules/uptime_check"
+  source     = "modules/stackdriver-uptime-check"
   name       = "${var.api_gateway}/service1"
   host       = "${var.api_gateway}"
   path       = "/service1/health"
@@ -13,7 +13,7 @@ module "service1" {
 }
 
 module "service2" {
-  source     = "modules/uptime_check"
+  source     = "modules/stackdriver-uptime-check"
   name       = "${var.api_gateway}/service2"
   host       = "${var.uptime_check_proxy}"
   auth_token = "${var.uptime_check_proxy_token}"
@@ -22,7 +22,7 @@ module "service2" {
 }
 
 module "service3" {
-  source     = "modules/uptime_check"
+  source     = "modules/stackdriver-uptime-check"
   name       = "${var.api_gateway}/service3"
   host       = "${var.api_gateway}"
   path       = "/service3/health_check"
