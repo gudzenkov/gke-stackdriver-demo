@@ -7,13 +7,6 @@ export TF_VAR_org_id=10xxxxxxxx777
 export TF_VAR_billing_account=03xxxx-xxxxxx-xxxDDD
 export TF_VAR_env_folder=4xxxxxxxxxx5
 ```
-## Set Project IDs and Kube Cluster to monitor with Stackdriver
-```
-export CORE_PROJECT_ID="gke-private-svpc-service"
-export STACKDRIVER_PROJECT_ID="gke-private-svpc-service"
-export KUBE_PROJECT_ID="gke-private-demo1"
-export KUBE_CLUSTER="shop-cluster"
-```
 
 # Create Stackdriver Workspace
 ```
@@ -45,7 +38,6 @@ terraform apply stackdriver.tfplan
 ```
 gcloud config set project $KUBE_PROJECT_ID
 gcloud config set compute/region $GOOGLE_REGION
-gcloud config set compute/zone $GOOGLE_ZONE
 gcloud config configurations list --filter IS_ACTIVE=True
 gcloud container clusters list
 
@@ -54,10 +46,12 @@ gcloud container clusters list
 ```
 gcloud source repos create $KUBE_CLUSTER
 gcloud container clusters create $KUBE_CLUSTER \
+      --region $GOOGLE_REGION \
       --enable-ip-alias \
       --enable-stackdriver-kubernetes \
-      --enable-autoscaling --min-nodes 3 --max-nodes 4
-gcloud container clusters get-credentials
+      --enable-autoscaling --min-nodes 1 --max-nodes 2
+      --scopes=https://www.googleapis.com/auth/cloud-platform
+gcloud container clusters get-credentials --region $GOOGLE_REGION $KUBE_CLUSTER
 kubectl get nodes
 ```
 
@@ -76,12 +70,23 @@ git push apm-demo APM-Troubleshooting-Demo-2
 ```
 ## Deploy and check frontend-external service
 ```
-skaffold run
-
+skaffold deploy
 kubectl get pods
+
 SVC=frontend-external
 export EXTERNAL_IP=$(kubectl get service $SVC -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 curl -sI http://$EXTERNAL_IP
 
 open http://$EXTERNAL_IP
 ```
+
+## Worknotes
+SRC=accl-19-dev
+DST=gke-private-demo1
+TAG1=dd14b8e
+TAG2=accl-demo
+APPS1="adservice cartservice checkoutservice currencyservice emailservice frontend loadgenerator paymentservice productcatalogservice recommendationservice shippingservice"
+APPS2="currencyservice frontend recommendationservice"
+for app in $APPS1; do docker image pull gcr.io/$SRC/$app:$TAG2; done
+for app in $APPS1; do docker image tag gcr.io/$SRC/$app:$TAG2 gcr.io/$DST/$app:$TAG2; done
+for app in $APPS1; do docker image push gcr.io/$DST/$app:$TAG2; done

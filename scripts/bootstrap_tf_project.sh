@@ -64,6 +64,11 @@ export GOOGLE_APPLICATION_CREDENTIALS=~/.config/gcloud/${TF_ADMIN}.json
 export TF_VAR_stackdriver_project=$STACKDRIVER_PROJECT_ID
 export TF_VAR_core_project=$CORE_PROJECT_ID
 export TF_VAR_kube_project=$KUBE_PROJECT_ID
+
+export CORE_PROJECT_ID=$CORE_PROJECT_ID
+export STACKDRIVER_PROJECT_ID=$STACKDRIVER_PROJECT_ID
+export KUBE_PROJECT_ID=$KUBE_PROJECT_ID
+export KUBE_CLUSTER="shop-cluster"
 EOF
 
 echo
