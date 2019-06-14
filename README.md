@@ -39,12 +39,15 @@ terraform apply stackdriver.tfplan
 gcloud config set project $KUBE_PROJECT_ID
 gcloud config set compute/region $GOOGLE_REGION
 gcloud config configurations list --filter IS_ACTIVE=True
+```
+## Enable APIs
+```
+gcloud services enable cloudbuild.googleapis.com
+gcloud services enable sourcerepo.googleapis.com
+```
+## Create Demo Kube cluster
+```
 gcloud container clusters list
-
-```
-## Create Demo Kube cluster and Cloud Source Repo
-```
-gcloud source repos create $KUBE_CLUSTER
 gcloud container clusters create $KUBE_CLUSTER \
       --region $GOOGLE_REGION \
       --enable-ip-alias \
@@ -61,6 +64,7 @@ Build and Deploy is done by [Skaffold](http://skaffold.dev/)
 
 ## Download the source and put the code in the Cloud Source Repo
 ```
+gcloud source repos create $KUBE_CLUSTER
 git clone https://github.com/blipzimmerman/microservices-demo-1
 cd microservices-demo-1
 git remote add apm-demo https://source.developers.google.com/p/$KUBE_PROJECT_ID/r/$KUBE_CLUSTER
@@ -79,14 +83,3 @@ curl -sI http://$EXTERNAL_IP
 
 open http://$EXTERNAL_IP
 ```
-
-## Worknotes
-SRC=accl-19-dev
-DST=gke-private-demo1
-TAG1=dd14b8e
-TAG2=accl-demo
-APPS1="adservice cartservice checkoutservice currencyservice emailservice frontend loadgenerator paymentservice productcatalogservice recommendationservice shippingservice"
-APPS2="currencyservice frontend recommendationservice"
-for app in $APPS1; do docker image pull gcr.io/$SRC/$app:$TAG2; done
-for app in $APPS1; do docker image tag gcr.io/$SRC/$app:$TAG2 gcr.io/$DST/$app:$TAG2; done
-for app in $APPS1; do docker image push gcr.io/$DST/$app:$TAG2; done

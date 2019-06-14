@@ -6,6 +6,21 @@
 - throughput RPS
 - durability
 
+## Enable APIs
+```
+gcloud config set project gke-private-demo1
+
+gcloud services enable cloudbuild.googleapis.com
+gcloud services enable sourcerepo.googleapis.com
+gcloud services enable stackdriver.googleapis.com
+gcloud services enable monitoring.googleapis.com
+gcloud services enable logging.googleapis.com
+gcloud services enable cloudtrace.googleapis.com
+gcloud services enable clouddebugger.googleapis.com
+gcloud services enable cloudprofiler.googleapis.com
+```
+
+
 ## Setup Alert Policy
 ### Latency
   - 99% of requests from the previous 60 minute period are services in under 3 seconds
@@ -99,14 +114,14 @@ labels."k8s-pod/app"="currencyservice"
 ### Snapshots to inspect the variables as the application progresses.
   - See if the previous branch "Master" had this code error on line 137.
 Go back to the Console and inspect the code using Cloud Source Repositories
+You can set Snaphot breakpoint at any line number and inspect variables caught live with a next app invocation.
+Either create these via cli
 ```
 gcloud debug snapshots create --target=currencyservice-1.0.0 src/currencyservice/server.js:136
-gcloud debug snapshots create --target=currencyservice-1.0.0 src/currencyservice/server.js:144
-gcloud debug snapshots create --target=currencyservice-1.0.0 src/currencyservice/server.js:149
 gcloud debug snapshots create --target=currencyservice-1.0.0 src/currencyservice/server.js:155
 ```
 
-### Deploy Fix
+### Deploy Fixed revision
 ```
 currencyservice.yaml
 image tag: rel013019fix
