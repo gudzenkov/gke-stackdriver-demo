@@ -5,12 +5,12 @@
 # export TF_VAR_billing_account=03xxxx-xxxxxx-xxxDDD
 # export TF_VAR_env_folder=4xxxxxxxxxx5
 
-BACKEND_CONFIG="tf/backend.tf"
+BACKEND_CONFIG="tf/stackdriver/backend.tf"
 
 ROOT=$(git rev-parse --show-toplevel)
 cd $ROOT
 #Load environment variables
-[ -z "$1" ] && ENV_FILE=".tf_env" || ENV_FILE=$1
+[ -z "$1" ] && ENV_FILE=".env" || ENV_FILE=$1
 [ -f "$ENV_FILE" ] && echo "Loading $ENV_FILE ..." && source "$ENV_FILE"
 
 # Required params:

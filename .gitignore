@@ -1,4 +1,5 @@
 **.gcp_env
 **.tf_env
+**.env
 **.terraform
 stackdriver.tfplan
