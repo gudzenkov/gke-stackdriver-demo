@@ -3,7 +3,7 @@
 
 # Login-proxy for JWT token authorization
 module "JamfNow" {
-  source        = "modules/stackdriver-uptime-check"
+  source        = "../modules/stackdriver-uptime-check"
   host          = "login.${var.domain}"
   match         = "Jamf Now"
   policy_name   = "JamfNow Login"
@@ -12,7 +12,7 @@ module "JamfNow" {
 
 # OKTA Login Endpoint uptime
 module "OKTA" {
-  source          = "modules/stackdriver-uptime-check"
+  source          = "../modules/stackdriver-uptime-check"
   name            = "jamf.okta.com/login"
   host            = "jamf.okta.com"
   path            = "/login/login.htm"
@@ -28,7 +28,7 @@ module "OKTA" {
 
 # Endpoints with simple OK-status with no auth required
 module "OIDC" {
-  source          = "modules/stackdriver-uptime-check"
+  source          = "../modules/stackdriver-uptime-check"
   name            = "oidc.${var.domain}"
   host            = "oidc.${var.domain}"
   path            = "/status"
@@ -39,7 +39,7 @@ module "OIDC" {
 
 # Login-proxy for JWT token authorization
 module "Login-proxy" {
-  source        = "modules/stackdriver-uptime-check"
+  source        = "../modules/stackdriver-uptime-check"
   name          = "${var.api_gateway}/login"
   host          = "${var.uptime_check_proxy}"
   match         = "${var.uptime_check_match_ok}"
