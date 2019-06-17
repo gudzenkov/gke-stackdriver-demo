@@ -5,7 +5,7 @@ https://github.com/gudzenkov/stackdriver-demo/tree/jamf
 https://github.com/gudzenkov/stackdriver-demo/blob/jamf/docs/Stackdriver%20Metrics.xlsx
 
 
-## Quicklabs: Site Reliability Troubleshooting with Stackdriver APM
+## Quicklabs: Site Reliability Troubleshooting with Stackdriver APM (Error-reporting/Trace/Debugger/Profiler)
 https://github.com/gudzenkov/stackdriver-demo/blob/jamf/docs/Stackdriver%20APM%20Lab.md
 https://google.qwiklabs.com/focuses/4186?parent=catalog
 
