@@ -1,3 +1,7 @@
+# TODO
+1. Update to TF12/13, decomm uptime-generator with `each` resource iterator
+2. Add enable-flags per-resource
+
 # Stackdriver toolset
 ## Demo with Alert Policies and Uptime Checks
 https://github.com/gudzenkov/stackdriver-demo/tree/jamf
